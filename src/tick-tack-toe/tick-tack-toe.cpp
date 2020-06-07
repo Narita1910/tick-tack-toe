@@ -472,7 +472,7 @@ int AI_monte_carlo::evaluate(bool fiest_time, Board& board, Mass::status current
 				best_x = x_table[idx];
 				best_y = y_table[idx];
 			}
-			//			std::cout << x_table[idx] + 1 << (char)('a' + y_table[idx]) << " " << score << "% (win:" << wins[idx] << ", lose:" << loses[idx] << ")" << std::endl;
+			//std::cout << x_table[idx] + 1 << (char)('a' + y_table[idx]) << " " << score << "% (win:" << wins[idx] << ", lose:" << loses[idx] << ")" << std::endl;
 		}
 
 		return score_max;
@@ -710,14 +710,16 @@ int main()
 
 			if (0 == turn) {
 				// user input
+				std::cout << "Playerのターン\n";
 				char col[1], row[1];
 				do {
-					std::cout << "? ";
+					std::cout << "どこに置きますか？(数字　アルファベット）";
 					std::cin >> row >> col;
 				} while (!game->put(row[0] - '1', col[0] - 'a'));
 			}
 			else {
 				// AI
+				std::cout << "AIのターン\n";
 				if (!game->think()) {
 					show_end_message(Board::WINNER::PLAYER);// 投了
 				}
